@@ -1,7 +1,7 @@
 /*eslint-env jquery*/
 'use strict';
 $(document).ready(function() {
-	let fruits = [
+	let cards = [
 		'banana',
 		'safe',
 		'milk',
@@ -34,7 +34,7 @@ $(document).ready(function() {
 
 		for (let i = 0; i < deck; i++) {
 			text +=
-				'<button class="card-top" tabindex="0"><img  class="card" src="images/' +
+				'<button class="card-top" tabindex="0"><img  class="card-back" src="images/' +
 				buffer[i] +
 				'.svg" alt="' + buffer[i] + '"></button>';
 		}
@@ -43,41 +43,58 @@ $(document).ready(function() {
 		document.getElementById('table').insertAdjacentHTML('beforeend', text);
 	}
 
-	shuffle(fruits);
+	shuffle(cards);
 
 	//sets initial score/lives for game start & the scoring function below
 	let totalScore = 0;
 	let lives = 3;
-	$('#lives').html('Lives: ' + lives);
+	// $('#lives').html('Lives: ' + lives);
+	document.getElementById('lives').innerHTML = 'Lives: ' + lives;
 
-	$('.card-top').click(function() {
-		$('.card-top', this).fadeTo(400, 0);
-		$('.card', this).fadeTo(400, 1);
-		$(this).attr('tabindex', -1); //removes card from tabindex so it's skipped when using keyboard
+	let cardTop = document.getElementsByClassName('card-top');
+	let cardBack = document.getElementsByClassName('card-back');
+
+	for (let i = 0; i < cardTop.length; i++) {
+		cardTop[i].addEventListener('click', onCardClick);
+	}
+
+	for (let i = 0; i < cardBack.length; i++) {
+		cardTop[i].addEventListener('click', onCardClick);
+	}
+
+	// $('.card-top').click(function() { //break everything after fn out into its own fn(s), to run on click event
+	// 	$('.card-top', this).fadeTo(400, 0);
+	// 	$('.card-back', this).fadeTo(400, 1);
+	// 	$(this).attr('tabindex', -1); //removes card from tabindex so it's skipped when using keyboard
 		
-		//scoring rules
-		switch ($('.card', this).attr('src')) {
-		case 'images/safe.svg':
-			totalScore = Number(totalScore) + 100;
-			$('#total').html('Score: ' + totalScore);
-			$(this).off('click');
-			break;
-		case 'images/banana.svg':
-			totalScore = Number(totalScore) - 200;
-			$('#total').html('Score: ' + totalScore);
-			lives = Number(lives) - 1;
-			$('#lives').html('Lives: ' + lives);
-			$(this).off('click');
-			break;
-		case 'images/milk.svg':
-			totalScore = Number(totalScore) + 300;
-			$('#total').html('Score: ' + totalScore);
-			$(this).off('click');
-			break;
-		}
+	// 	//scoring rules
+	// 	switch ($('.card-back', this).attr('src')) {
+	// 	case 'images/safe.svg':
+	// 		totalScore = Number(totalScore) + 100;
+	// 		$('#total').html('Score: ' + totalScore);
+	// 		$(this).off('click');
+	// 		break;
+	// 	case 'images/banana.svg':
+	// 		totalScore = Number(totalScore) - 200;
+	// 		$('#total').html('Score: ' + totalScore);
+	// 		lives = Number(lives) - 1;
+	// 		$('#lives').html('Lives: ' + lives);
+	// 		$(this).off('click');
+	// 		break;
+	// 	case 'images/milk.svg':
+	// 		totalScore = Number(totalScore) + 300;
+	// 		$('#total').html('Score: ' + totalScore);
+	// 		$(this).off('click');
+	// 		break;
+	// 	}
 
-		livesCheck();
-	});
+	// 	livesCheck();
+	// });
+	function onCardClick () {
+	  console.log('okay');
+	  this.setAttribute('tabindex', -1);
+	  this.removeEventListener('click', onCardClick);
+	}
 
 	function livesCheck (){
 	//check to see if lives remaining are 0 and if to end and restart game
@@ -100,7 +117,8 @@ $(document).ready(function() {
 		};
 	};
 	
-	$('#total').html('Score: ' + totalScore);
+	// $('#total').html('Score: ' + totalScore);
+	document.getElementById('total').innerHTML = 'Score: ' + totalScore;
 
 });
 
