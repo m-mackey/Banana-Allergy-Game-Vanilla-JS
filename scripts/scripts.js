@@ -79,121 +79,66 @@ function placeCards() {
         card.setAttribute('tabindex', 0); 
         card.setAttribute('data-id', i);
         card.addEventListener('click', onCardSelect);
-        table.appendChild(card);
+        table.append(card);
+
+        const cardImg = document.createElement('img');
+        cardImg.setAttribute('src', 'images/card.svg');
+        cardImg.setAttribute('class', 'card-top-img');
+        card.append(cardImg);
     }
 }
 
 function onCardSelect() {
     let cardId = this.getAttribute('data-id');
-    this.setAttribute('src', cards[cardId].img);
+    this.setAttribute('tabindex', -1);
+    this.removeEventListener('click', onCardSelect);
+    let selectCardImg = this.firstChild;
+    selectCardImg.setAttribute('src', cards[cardId].img);
+
+    scoring(selectCardImg);
 }
+
+let totalScore = 0;
+//displays score
+document.getElementById('total').innerHTML = 'Score: ' + totalScore;
+
+let lives = 3;
+document.getElementById('lives').innerHTML = 'Lives: ' + lives;
+
+function scoring(cardValue) {
+    console.log(cardValue.getAttribute('src'));
+    switch (cardValue.getAttribute('src')) {
+        case 'images/safe.svg':
+        	totalScore = Number(totalScore) + 100;
+        	document.getElementById('total').innerHTML = 'Score: ' + totalScore;
+        	break;
+        case 'images/banana.svg':
+        	totalScore = Number(totalScore) - 200;
+        	document.getElementById('total').innerHTML = 'Score: ' + totalScore;
+        	lives = Number(lives) - 1;
+        	document.getElementById('lives').innerHTML = 'Lives: ' + lives;
+        	break;
+        case 'images/milk.svg':
+        	totalScore = Number(totalScore) + 300;
+        	document.getElementById('total').innerHTML = 'Score: ' + totalScore;
+        	break;
+    }
+}
+
+
 
 placeCards();
 
 });
 
 
-// $(document).ready(function() {
-// 	let cards = [
-// 		'banana',
-// 		'safe',
-// 		'milk',
-// 		'banana',
-// 		'safe',
-// 		'milk',
-// 		'banana',
-// 		'safe',
-// 		'milk',
-// 		'banana',
-// 		'safe',
-// 		'milk',
-// 		'safe',
-// 		'banana',
-// 		'safe',
-// 		'safe'
-// 	];
 
-// 	function shuffle(arr) {
-// 		let buffer = [];
-// 		let	start;
 
-// 		for (let i = arr.length; i >= arr.length && i > 0; i--) {
-// 			start = Math.floor(Math.random() * arr.length);
-// 			buffer.push(arr.splice(start, 1)[0]);
-// 		}
-
-// 		let deck = buffer.length;
-// 		let text = '<div class="play-area">';
-
-// 		for (let i = 0; i < deck; i++) {
-// 			text +=
-// 				'<button class="card-top" tabindex="0"><img  class="card-back" src="images/' +
-// 				buffer[i] +
-// 				'.svg" alt="' + buffer[i] + '"></button>';
-// 		}
-
-// 		text += '</div>';
-// 		document.getElementById('table').insertAdjacentHTML('beforeend', text);
-// 	}
-
-// 	shuffle(cards);
-
-// 	//sets initial score/lives for game start & the scoring function below
-// 	let totalScore = 0;
-// 	let lives = 3;
-// 	// $('#lives').html('Lives: ' + lives);
-// 	document.getElementById('lives').innerHTML = 'Lives: ' + lives;
-
-// 	let cardTop = document.getElementsByClassName('card-top');
-// 	let cardBack = document.getElementsByClassName('card-back');
-
-// 	for (let i = 0; i < cardTop.length; i++) {
-// 		cardTop[i].addEventListener('click', () => {
-// 			// this.setAttribute('tabindex', -1);
-// 			// cardTop.classList.toggle('hide');
-// 		});
-// 	}
-
-// 	// for (let i = 0; i < cardBack.length; i++) {
-// 	// 	cardTop[i].addEventListener('click', () => {
-// 	// 		this.setAttribute('tabindex', -1);
-// 	// 		this.classList.add('hide');
-// 	// 	});
-// 	// }
-
-// 	// $('.card-top').click(function() { //break everything after fn out into its own fn(s), to run on click event
-// 	// 	$('.card-top', this).fadeTo(400, 0);
-// 	// 	$('.card-back', this).fadeTo(400, 1);
-// 	// 	$(this).attr('tabindex', -1); //removes card from tabindex so it's skipped when using keyboard
-		
-// 	// 	//scoring rules
-// 	// 	switch ($('.card-back', this).attr('src')) {
-// 	// 	case 'images/safe.svg':
-// 	// 		totalScore = Number(totalScore) + 100;
-// 	// 		$('#total').html('Score: ' + totalScore);
-// 	// 		$(this).off('click');
-// 	// 		break;
-// 	// 	case 'images/banana.svg':
-// 	// 		totalScore = Number(totalScore) - 200;
-// 	// 		$('#total').html('Score: ' + totalScore);
-// 	// 		lives = Number(lives) - 1;
-// 	// 		$('#lives').html('Lives: ' + lives);
-// 	// 		$(this).off('click');
-// 	// 		break;
-// 	// 	case 'images/milk.svg':
-// 	// 		totalScore = Number(totalScore) + 300;
-// 	// 		$('#total').html('Score: ' + totalScore);
-// 	// 		$(this).off('click');
-// 	// 		break;
 // 	// 	}
 
 // 	// 	livesCheck();
 // 	// });
-// 	// function onCardClick () {
-// 	//   console.log('okay');
-// 	//   this.setAttribute('tabindex', -1);
-// 	//   this.removeEventListener('click', onCardClick);
-// 	// }
+// 	//
 
 // 	function livesCheck (){
 // 	//check to see if lives remaining are 0 and if to end and restart game
@@ -216,7 +161,6 @@ placeCards();
 // 		};
 // 	};
 	
-// 	// $('#total').html('Score: ' + totalScore);
 // 	document.getElementById('total').innerHTML = 'Score: ' + totalScore;
 
 // });
