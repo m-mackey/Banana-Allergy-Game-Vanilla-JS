@@ -14,25 +14,26 @@
 <body>
 
 	<main id="outer" class="outer">
+	<h1 class="visually-hidden">Banana Allergy Monkey Game</h1>
 		<section class="game-text"> 
-			<h1 class="visually-hidden">Instructions and Scoring</h1>
+			<h2 class="visually-hidden">Instructions and Scoring</h2>
 			<div class="instructions">
-				<h2 class="visually-hidden">Instructions</h2>
+				<h3 class="visually-hidden">Instructions</h3>
 					<p id="story">Oh no! You are a monkey who has a banana allergy!</p>
 					<p>Score as many points as possible, but watch out for bananas!</p>
 			</div>
-			<h2 class="visually-hidden">Scoring Rules</h2>
+			<h3 class="visually-hidden">Scoring Rules</h3>
 				<div id="safe"><img src="images/safe.svg" alt="Safe" class="score-chart"><div class="points"> . . . 100pts</div></div>
 				<div id="banana"><img src="images/banana.svg" alt="Banana" class="score-chart"><div class="points">  . . . -200pts<br>  . . . -1 life</div></div>
 				<div id="banana-milk"><img src="images/milk.svg" alt="Banana Milk" class="score-chart"><div class="points"> . . . 300pts</div></div>
-			<h2 class="visually-hidden">Lives Remaining and Total Score</h2>
+			<h3 class="visually-hidden">Lives Remaining and Total Score</h3>
 				<div id="lives"></div>
 				<div id="total"></div>
 		</section>
 		<section class="game-area">	
-			<h1 class="visually-hidden">Game Board</h1>
-				<div id="table"></div>
-				<div id="game-over" hidden></div>
+			<h2 class="visually-hidden">Game Board</h2>
+				<div id="table" class="show"></div>
+				<div id="game-over" class="hide-game-over" hidden></div>
 		</section>
 	</main>
 	
