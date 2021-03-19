@@ -157,11 +157,6 @@ button.card {
 	background: white;
 }
 
-.card-img {
-	width: 100%;
-	height: 100%;
-}
-
 .card-top.ani {
 	animation: fadeout 0.5s ease-in forwards;
 }

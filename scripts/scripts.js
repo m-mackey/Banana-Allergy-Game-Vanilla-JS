@@ -87,8 +87,10 @@ document.addEventListener('DOMContentLoaded', () => {
     // }
 
     function shuffle(array) {
-        let m = array.length,
-            t, i;
+        let m = array.length;
+        let t;
+        let i;
+        
         while (m) {
             i = Math.floor(Math.random() * m--);
             t = array[m];
@@ -106,6 +108,8 @@ document.addEventListener('DOMContentLoaded', () => {
     //creation of card placement
     function placeCards() {
         for (let i = 0; i < cards.length; i++) {
+            //creates button that will be container for front and back of card imgs
+            //also appends as child of table
             const card = document.createElement('button');
             card.setAttribute('class', 'card');
             card.setAttribute('tabindex', 0);
@@ -113,13 +117,16 @@ document.addEventListener('DOMContentLoaded', () => {
             card.addEventListener('click', onCardSelect);
             table.append(card);
 
+            //creates top of card with image and sets classes
             const cardImg = document.createElement('img');
             cardImg.setAttribute('src', 'images/card.svg');
             cardImg.setAttribute('class', 'card-top');
 
+            //creates back of card and sets it's class
             const cardBack = document.createElement('img');
             cardBack.setAttribute('class', 'card-back');
 
+            //appends card front and back as children of button
             card.append(cardImg, cardBack);
 
 
@@ -133,6 +140,7 @@ document.addEventListener('DOMContentLoaded', () => {
         this.removeEventListener('click', onCardSelect);
         this.children[0].classList.add('ani');
 
+        //sets image for the back of the card
         const selectCardImg = this.children[1];
         selectCardImg.setAttribute('src', cards[cardId].img);
         selectCardImg.classList.add('ani2');
@@ -140,11 +148,13 @@ document.addEventListener('DOMContentLoaded', () => {
         scoring(selectCardImg);
     }
 
+    // displays score and lives and sets initial totals
     let totalScore = 0;
     document.getElementById('total').innerHTML = 'Score: ' + totalScore;
 
     let lives = 3;
     document.getElementById('lives').innerHTML = 'Lives: ' + lives;
+
 
     //takes card chosen in onCardSelect function and adjusts score/lives
     function scoring(cardValue) {
@@ -189,7 +199,6 @@ document.addEventListener('DOMContentLoaded', () => {
             const gameOver = document.getElementById('game-over');
             gameOver.classList.add('show-game-over');
             setTimeout(() => gameOver.hidden = false, 2000);
-            // gameOver.hidden = false;
             gameOver.innerHTML = '<p class="game-over-text">Game Over</p>';
             gameOver.insertAdjacentHTML('beforeend', '<button id="restart">New Game</button>');
 
