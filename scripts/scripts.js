@@ -143,6 +143,7 @@ document.addEventListener('DOMContentLoaded', () => {
         //sets image for the back of the card
         const selectCardImg = this.children[1];
         selectCardImg.setAttribute('src', cards[cardId].img);
+        selectCardImg.setAtrribute('alt', cards[cardId]);
         selectCardImg.classList.add('ani2');
 
         scoring(selectCardImg);
