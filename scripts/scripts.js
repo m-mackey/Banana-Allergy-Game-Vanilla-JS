@@ -120,6 +120,7 @@ document.addEventListener('DOMContentLoaded', () => {
             //creates top of card with image and sets classes
             const cardImg = document.createElement('img');
             cardImg.setAttribute('src', 'images/card.svg');
+            selectCardImg.setAtrribute('alt', 'card top');
             cardImg.setAttribute('class', 'card-top');
 
             //creates back of card and sets it's class
