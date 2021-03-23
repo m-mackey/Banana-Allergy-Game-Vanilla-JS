@@ -120,7 +120,6 @@ document.addEventListener('DOMContentLoaded', () => {
             //creates top of card with image and sets classes
             const cardImg = document.createElement('img');
             cardImg.setAttribute('src', 'images/card.svg');
-            selectCardImg.setAtrribute('alt', 'card top');
             cardImg.setAttribute('class', 'card-top');
 
             //creates back of card and sets it's class
@@ -144,7 +143,6 @@ document.addEventListener('DOMContentLoaded', () => {
         //sets image for the back of the card
         const selectCardImg = this.children[1];
         selectCardImg.setAttribute('src', cards[cardId].img);
-        selectCardImg.setAtrribute('alt', cards[cardId]);
         selectCardImg.classList.add('ani2');
 
         scoring(selectCardImg);
