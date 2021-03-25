@@ -17,24 +17,20 @@ document.addEventListener('DOMContentLoaded', () => {
             img: 'images/banana.svg',
         },
         {
-            name: 'safe',
-            img: 'images/safe.svg',
+            name: 'monkey',
+            img: 'images/monkey.svg',
         },
         {
-            name: 'safe',
-            img: 'images/safe.svg',
+            name: 'monkey',
+            img: 'images/monkey.svg',
         },
         {
-            name: 'safe',
-            img: 'images/safe.svg',
+            name: 'monkey',
+            img: 'images/monkey.svg',
         },
         {
-            name: 'safe',
-            img: 'images/safe.svg',
-        },
-        {
-            name: 'milk',
-            img: 'images/milk.svg',
+            name: 'monkey',
+            img: 'images/monkey.svg',
         },
         {
             name: 'milk',
@@ -49,12 +45,16 @@ document.addEventListener('DOMContentLoaded', () => {
             img: 'images/milk.svg',
         },
         {
-            name: 'safe',
-            img: 'images/safe.svg',
+            name: 'milk',
+            img: 'images/milk.svg',
         },
         {
-            name: 'safe',
-            img: 'images/safe.svg',
+            name: 'monkey',
+            img: 'images/monkey.svg',
+        },
+        {
+            name: 'monkey',
+            img: 'images/monkey.svg',
         },
         {
             name: 'milk',
@@ -162,7 +162,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function scoring(cardValue) {
 
         switch (cardValue.getAttribute('src')) {
-            case 'images/safe.svg':
+            case 'images/monkey.svg':
                 totalScore = Number(totalScore) + 100;
                 document.getElementById('total').innerHTML = 'Score: ' + totalScore;
                 break;

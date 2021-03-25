@@ -41,7 +41,7 @@
 	grid-gap: 0.80em;
 	grid-template-areas:
 		"instructions instructions"
-		"safe safe"
+		"monkey monkey"
 		"banana banana"
 		"banana-milk banana-milk"
 		"lives score";
@@ -87,8 +87,8 @@ button {
 	float: left;
 }
 
-#safe {
-	grid-area: safe;
+#monkey {
+	grid-area: monkey;
 }
 
 #banana {
@@ -99,7 +99,7 @@ button {
 	grid-area: banana-milk;
 }
 
-#safe,
+#monkey,
 #banana,
 #banana-milk {
 	display: flex;
